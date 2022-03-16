@@ -1,28 +1,21 @@
 package sorting
 
 func BubbleSort(arr []int) {
-	isDone := false
-	for !isDone {
-		isDone = true
-		i := 0
-		for i < len(arr)-1 {
-			if arr[i] > arr[i+1] {
-				arr[i], arr[i+1] = arr[i+1], arr[i]
-				isDone = false
+	for i := 0; i < len(arr)-1; i++ {
+		for j := 0; j < len(arr)-1-i; j++ {
+			if arr[j] > arr[j+1] {
+				arr[j], arr[j+1] = arr[j+1], arr[j]
 			}
-			i++
 		}
 	}
 }
 
-func InsertionSort(arr []int) {
-	i := 1
-	for i < len(arr) {
-		j := i
-		for j >= 1 && arr[j] < arr[j-1] {
-			arr[j], arr[j-1] = arr[j-1], arr[j]
-			j--
+func SelectionSort(arr []int) {
+	for i := 0; i < len(arr)-1; i++ {
+		for j := i + 1; j < len(arr); j++ {
+			if arr[j] < arr[i] {
+				arr[j], arr[i] = arr[i], arr[j]
+			}
 		}
-		i++
 	}
 }
