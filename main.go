@@ -6,9 +6,7 @@ import (
 )
 
 func main() {
-	arr := []int{8, 2, 9, 0, 4, 1}
+	arr := sorting.GenArr(10)
 	fmt.Println("before sorting", arr)
-	// sorting.BubbleSort(arr)
-	sorting.SelectionSort(arr)
-	fmt.Println("after sorting", arr)
+	fmt.Println("after sorting", sorting.SelectionSort(arr))
 }

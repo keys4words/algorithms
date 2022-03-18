@@ -6,10 +6,10 @@ import (
 )
 
 func GenArr(size int) []int {
-	slice := make([]int, size, size)
+	slice := make([]int, size)
 	rand.Seed(time.Now().UnixNano())
 	for i := 0; i < size; i++ {
-		slice[i] = rand.Intn(999) - rand.Intn(999)
+		slice[i] = rand.Intn(99)
 	}
 	return slice
 }
