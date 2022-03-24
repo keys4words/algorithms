@@ -1,15 +1,13 @@
 package main
 
 import (
-	search "algorithms/search"
-	"algorithms/sorting"
-	"fmt"
+	datastructures "algorithms/dataStructures"
 )
 
 func main() {
-	arr := sorting.GenArr(10)
+	// arr := sorting.GenArr(10)
 	// fmt.Println("before sorting", arr)
-	arr = sorting.SelectionSort(arr)
+	// arr = sorting.SelectionSort(arr)
 	// fmt.Println("after sorting", sorting.BubbleSort(arr))
 	// fmt.Println("after sorting", sorting.MergeSort(arr))
 
@@ -26,6 +24,7 @@ func main() {
 	// 	}
 	// }
 	//======================
-	num := arr[0]
-	fmt.Println("Find", num, "in arr =", arr, " -> ", search.BinarySearch(num, arr))
+	// num := arr[0]
+	// fmt.Println("Find", num, "in arr =", arr, " -> ", search.BinarySearch(num, arr))
+	datastructures.TestLinkedList()
 }
