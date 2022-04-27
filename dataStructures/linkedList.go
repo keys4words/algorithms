@@ -1,147 +1,65 @@
-package datastructures
+package main
 
 import "fmt"
 
-type el struct {
-	name string
-	next *el
+type List struct {
+	head *Node
+	tail *Node
 }
 
-type SingleList struct {
-	len  int
-	head *el
+func (l *List) First() *Node {
+	return l.head
 }
 
-func initList() *SingleList {
-	return &SingleList{}
+func (l *List) Last() *Node {
+	return l.tail
 }
 
-func (s *SingleList) AddFront(name string) {
-	el := &el{
-		name: name,
-	}
-	if s.head == nil {
-		s.head = el
+func (l *List) Push(value int) {
+	node := &Node{value: value}
+	if l.head == nil {
+		l.head = node
 	} else {
-		el.next = s.head
-		s.head = el
+		l.tail.next = node
+		node.prev = l.tail
 	}
-	s.len++
-	return
+	l.tail = node
 }
 
-func (s *SingleList) AddBack(name string) {
-	el := &el{
-		name: name,
-	}
-	if s.head == nil {
-		s.head = el
-	} else {
-		current := s.head
-		for current.next != nil {
-			current = current.next
+type Node struct {
+	value int
+	next  *Node
+	prev  *Node
+}
+
+func (n *Node) Next() *Node {
+	return n.next
+}
+
+func (n *Node) Prev() *Node {
+	return n.prev
+}
+
+func main() {
+	l := &List{}
+	l.Push(1)
+	l.Push(2)
+	l.Push(3)
+
+	n := l.First()
+	for {
+		fmt.Println(n.value)
+		n = n.Next()
+		if n == nil {
+			break
 		}
-		current.next = el
 	}
-	s.len++
-	return
-}
-
-func (s *SingleList) RemoveFront() error {
-	if s.head == nil {
-		return fmt.Errorf("List is empty")
+	n = l.Last()
+	for {
+		fmt.Println(n.value)
+		n = n.Prev()
+		if n == nil {
+			break
+		}
 	}
-	s.head = s.head.next
-	s.len--
-	return nil
-}
-
-func (s *SingleList) RemoveBack() error {
-	if s.head == nil {
-		return fmt.Errorf("removeBack: List is empty")
-	}
-	var prev *el
-	current := s.head
-	for current.next != nil {
-		prev = current
-		current = current.next
-	}
-	if prev != nil {
-		prev.next = nil
-	} else {
-		s.head = nil
-	}
-	s.len--
-	return nil
-}
-
-func (s *SingleList) Front() (string, error) {
-	if s.head == nil {
-		return "", fmt.Errorf("Single List is empty")
-	}
-	return s.head.name, nil
-}
-
-func (s *SingleList) Size() int {
-	return s.len
-}
-
-func (s *SingleList) Traverse() error {
-	if s.head == nil {
-		return fmt.Errorf("TranverseError: List is empty")
-	}
-	current := s.head
-	for current != nil {
-		fmt.Println(current.name)
-		current = current.next
-	}
-	return nil
-}
-
-func TestLinkedList() {
-	singleList := initList()
-	fmt.Printf("AddFront: A\n")
-	singleList.AddFront("A")
-	fmt.Printf("AddFront: B\n")
-	singleList.AddFront("B")
-	fmt.Printf("AddBack: C\n")
-	singleList.AddBack("C")
-
-	fmt.Printf("Size: %d\n", singleList.Size())
-
-	err := singleList.Traverse()
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-
-	fmt.Printf("RemoveFront\n")
-	err = singleList.RemoveFront()
-	if err != nil {
-		fmt.Printf("RemoveFront Error: %s\n", err.Error())
-	}
-
-	fmt.Printf("RemoveBack\n")
-	err = singleList.RemoveBack()
-	if err != nil {
-		fmt.Printf("RemoveBack Error: %s\n", err.Error())
-	}
-
-	fmt.Printf("RemoveBack\n")
-	err = singleList.RemoveBack()
-	if err != nil {
-		fmt.Printf("RemoveBack Error: %s\n", err.Error())
-	}
-
-	fmt.Printf("RemoveBack\n")
-	err = singleList.RemoveBack()
-	if err != nil {
-		fmt.Printf("RemoveBack Error: %s\n", err.Error())
-	}
-
-	err = singleList.Traverse()
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-
-	fmt.Printf("Size: %d\n", singleList.Size())
 }
