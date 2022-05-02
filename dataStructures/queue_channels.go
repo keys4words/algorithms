@@ -24,5 +24,5 @@ func main() {
 	fmt.Println(q.Dequeue())
 	fmt.Println(q.Dequeue())
 	fmt.Println(q.Dequeue())
-	// fmt.Println(q.Dequeue())
+	fmt.Println(q.Dequeue())
 }
